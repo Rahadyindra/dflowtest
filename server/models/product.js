@@ -12,9 +12,9 @@ class Product {
     return this.getProduct().find().toArray();
   }
 
-  static async findById(id) {
+  static async findById(_id) {
     return this.getProduct().findOne({
-      _id: new ObjectId(id),
+      _id: new ObjectId(_id),
     });
   }
 
@@ -22,8 +22,8 @@ class Product {
     return this.getProduct().insertOne(product);
   }
 
-  static async delete(id) {
-    return this.getProduct().deleteOne({ _id: new ObjectId(id) });
+  static async delete(_id) {
+    return this.getProduct().deleteOne({ _id: new ObjectId(_id) });
   }
 
   static async updateProduct({ product, _id }) {
