@@ -1,6 +1,6 @@
 const Product = require("../models/product");
 
-class Controller {
+class ProductController {
   static async getAllProducts(req, res, next) {
     try {
       const getProduct = await Product.findAll();
@@ -30,6 +30,11 @@ class Controller {
     try {
       const { _id } = req.params;
       const { product } = req.body;
+      const checkProduct = await Product.findById(_id);
+
+      if (!checkProduct) {
+        throw { name: "notFound" };
+      }
 
       await Product.updateProduct({ product, _id });
 
@@ -45,6 +50,11 @@ class Controller {
     try {
       const { _id } = req.params;
 
+      const checkProduct = await Product.findById(_id);
+      if (!checkProduct) {
+        throw { name: "notFound" };
+      }
+
       await Product.delete(_id);
 
       res.status(201).json({
@@ -54,6 +64,20 @@ class Controller {
       next(err);
     }
   }
+
+  static async getProductById(req, res, next) {
+    try {
+      const { _id } = req.params;
+
+      const checkProduct = await Product.findById(_id);
+      if (!checkProduct) {
+        throw { name: "notFound" };
+      }
+      res.status(200).json(checkProduct);
+    } catch (err) {
+      next(err);
+    }
+  }
 }
 
-module.exports = Controller;
+module.exports = ProductController;
