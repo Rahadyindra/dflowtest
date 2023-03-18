@@ -57,9 +57,7 @@ class ProductController {
 
       await Product.delete(_id);
 
-      res.status(201).json({
-        message: `Successfully deleted product ${_id}`,
-      });
+      res.status(204).json();
     } catch (err) {
       next(err);
     }

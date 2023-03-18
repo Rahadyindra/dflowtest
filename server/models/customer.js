@@ -1,4 +1,5 @@
 const { getDatabase } = require("../config/config");
+const { ObjectId } = require("mongodb");
 
 class Customer {
   static getCustomer() {
@@ -15,6 +16,15 @@ class Customer {
     return this.getCustomer().findOne({
       email: email,
     });
+  }
+
+  static async findById(_id) {
+    return this.getCustomer().findOne(
+      {
+        _id: new ObjectId(_id),
+      },
+      { projection: { password: 0 } }
+    );
   }
 }
 
