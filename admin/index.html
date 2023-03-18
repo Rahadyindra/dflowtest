@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title>Admin Side</title>
+</head>
+<body>
+    <!-- SIDEBAR HERE -->
+    <section id="sidebar">
+        <div class="bg-white border shadow-xl w-[30vh] h-full fixed top-0 left-0 rounded-b-xl">
+            <div class="flex flex-col mt-5">
+                <p class="mx-auto text-xl font-bold">Admin Dashboard</p>
+                <div class="flex flex-col gap-y-[5vh] pt-10 mx-5">
+                    <a to="/" class="text-center shadow-md py-2 px-auto rounded-xl mx-5 hover:bg-slate-200">
+                        Products
+                    </a>
+                    <a to="/form"
+                        class="text-center shadow-md py-2 px-auto rounded-xl mx-5  hover:bg-slate-200 whitespace-nowrap">
+                        Add Product
+                    </a>
+
+
+                    <p class="text-center font-semibold">Hello, Admin</p>
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ALL PRODUCTS HERE -->
+    <section id="all product" class="hidde">
+
+        <h1 class="ml-[55vh] mt-[5vh] text-2xl font-bold">List of Products</h1>
+        <table class="table-auto  mx-auto mt-[5vh] shadow-xl  bg-white">
+            <thead>
+                <tr>
+                    <th class="border border-gray-400 p-2">_id</th>
+                    <th class="border border-gray-400 p-2">Name</th>
+                    <th class="border border-gray-400 p-2">Price</th>
+                    <th class="border border-gray-400 p-2">Status</th>
+                    <th class="border border-gray-400 p-2">Image</th>
+                    <th class="border border-gray-400 p-2">Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+
+                    <td class="border border-gray-400 p-2">{Product?.id}</td>
+                    <td class="border border-gray-400 p-2">{Product?.name}</td>
+                    <td class="border border-gray-400 p-2">{Product?.price}</td>
+                    <td class="border border-gray-400 p-2 text-sm">{Product?.status}</td>
+                    <td class="border border-gray-400 p-2">
+                        <img src={Product?.imgUrl} alt="post image" />
+                    </td>
+                    <td class="border border-gray-400 p-2">
+
+                        <span class="flex flex-col gap-y-2">
+                            <button onClick={handleEdit}
+                                class="bg-neutral-200 hover:bg-neutral-400 rounded px-3 py-1 mt-5">
+                                Edit
+                            </button>
+                            <button class="bg-red-500 hover:bg-red-700 text-white rounded px-3 py-1 mt-2"
+                                onClick={handleDelete}>
+                                Delete
+                            </button>
+                        </span>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+
+    <!-- ADD PRODUCT HERE -->
+
+    <section id="addProduct">
+        <div class="container">
+            <div
+                class="bg-[#ffff] shadow-xl w-[85vh] h-[80vh] rounded-lg border border-[#99980] mx-auto mt-[10vh] pl-[16vh] relative">
+                <form action="submit" class="flex flex-col pt-[8vh] gap-y-5 ">
+                    <h1 class="text-xl font-semibold">Add Product</h1>
+                    <input type="text" name="name" placeholder="name"
+                        class="w-[50vh] h-12 border-2 rounded pl-3 mt-1" />
+                    <input type="text" placeholder="imgUrl" name="imageUrl"
+                        class="w-[50vh] h-12 border-2 rounded pl-3" />
+                    <input type="text" name="description" placeholder="description"
+                        class="w-[50vh] h-12 border-2 rounded pl-3" />
+                    <input type="text" name="price" placeholder="price" class="w-[50vh] h-12 border-2 rounded pl-3" />
+                    <select class="border-2 rounded w-[50vh] h-12" name="status">
+                        <option disabled value="" selected>-- Select Status Here --</option>
+                        <option value="Pre-Order">Pre-Order</option>
+                        <option value="Purchase">Purchase</option>
+                    </select>
+
+                    <button type="submit"
+                        class="bg-[#bd2333] text-white absolute bottom-[10vh]  align-middle w-44 h-[52px] rounded text-center py-3 font-semibold">
+                        Submit
+                    </button>
+                </form>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- EDIT PRODUCT HERE -->
+
+    <section id="editProduct">
+        <div class="container">
+            <div
+                class="bg-[#ffff] shadow-xl w-[85vh] h-[80vh] rounded-lg border border-[#99980] mx-auto mt-[10vh] pl-[16vh] relative">
+                <form action="submit" class="flex flex-col pt-[8vh] gap-y-5 ">
+                    <h1 class="text-xl font-semibold">Edit Product</h1>
+                    <input type="text" name="name" placeholder="name"
+                        class="w-[50vh] h-12 border-2 rounded pl-3 mt-1" />
+                    <input type="text" placeholder="imgUrl" name="imageUrl"
+                        class="w-[50vh] h-12 border-2 rounded pl-3" />
+                    <input type="text" name="description" placeholder="description"
+                        class="w-[50vh] h-12 border-2 rounded pl-3" />
+                    <input type="text" name="price" placeholder="price" class="w-[50vh] h-12 border-2 rounded pl-3" />
+                    <select class="border-2 rounded w-[50vh] h-12" name="status">
+                        <option disabled value="" selected>-- Select Status Here --</option>
+                        <option value="Pre-Order">Pre-Order</option>
+                        <option value="Purchase">Purchase</option>
+                    </select>
+
+                    <button type="submit"
+                        class="bg-[#bd2333] text-white absolute bottom-[10vh]  align-middle w-44 h-[52px] rounded text-center py-3 font-semibold">
+                        Submit
+                    </button>
+                </form>
+
+            </div>
+        </div>
+    </section>
+</body>
+</html>
