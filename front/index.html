@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DFlow Ecommerce</title>
+</head>
+<body>
+
+    <!-- REGISTER CUSTOMER HERE -->
+
+    <section id="register customer" class="hidden">
+        <div class="container">
+            <div
+                class="bg-[#ffff] shadow-xl w-[85vh] h-[65vh] rounded-lg border border-[#99980] mx-auto mt-[15vh] pl-[16vh] relative">
+                <form action="submit" onSubmit={handleRegister} class="flex flex-col pt-[8vh] gap-y-5 ">
+                    <h1 class="text-xl font-semibold">Register here.</h1>
+                    <input type="text" name="email" placeholder="Email Address"
+                        class="w-[50vh] h-12 border-2 rounded pl-3 mt-1" />
+                    <input type="text" placeholder="Username" name="username"
+                        class="w-[50vh] h-12 border-2 rounded pl-3" />
+                    <input type="password" name="password" placeholder="Password"
+                        class="w-[50vh] h-12 border-2 rounded pl-3" />
+
+                    <button type="submit"
+                        class="bg-[#bd2333] text-white absolute bottom-[10vh] ml-[110px] align-middle w-44 h-[52px] rounded text-center py-3 font-semibold">
+                        Sign Up
+                    </button>
+                </form>
+                <button class="pt-5">
+                    Already have an account?
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- LOGIN CUSTOMER HERE -->
+
+    <!-- <section id="login customer" class="hidden">
+        <div class="container">
+            <div
+                class="bg-[#ffff] shadow-xl w-[85vh] h-[60vh] rounded-lg border border-[#99980] mx-auto mt-[20vh] pl-[16vh] pt-[5vh] relative">
+                <form action="submit" class="flex flex-col pt-[4vh] gap-y-5" onSubmit={doLogin}>
+                    <h1 class="text-xl font-semibold">Welcome back.</h1>
+                    <input onChange={handleLoginForm} type="text" placeholder="Email Address"
+                        class="w-[50vh] h-12 border-2 rounded pl-3" name="email" />
+                    <input onChange={handleLoginForm} type="password" placeholder="Password"
+                        class="w-[50vh] h-12 border-2 rounded pl-3" name="password" />
+                    <button type="submit"
+                        class="bg-[#bd2333] text-white absolute bottom-[14vh] ml-[110px] align-middle w-44 h-[52px] rounded text-center py-3 font-semibold">
+                        Sign In
+                    </button>
+                </form>
+                <button class="pt-5">
+                    Don't have an account?
+                </button>
+            </div>
+        </div>
+    </section> -->
+
+    <!-- ALL PRODUCTS -->
+
+    <section id="all products" class="hidden">
+        <div class="flex-col my-10">
+            <div class="flex flex-wrap">
+
+                <h1 class="text-4xl mx-[22vh] mb-5 font-bold">Our Catalogue</h1>
+                <button
+                    class="bg-slate-800 hover:bg-slate-900 text-white ml-[70vh] align-middle w-32 h-[50px] rounded text-center py-3 ">
+                    Your Cart
+                </button>
+            </div>
+            <div class="mx-[22vh] flex flex-wrap gap-[10vh]">
+                <div class="h-[678px] w-[370px] bg-white rounded shadow-xl relative">
+                    <img src={post.imgUrl} alt="post image" class="w-full h-[50vh] rounded-t object-cover" />
+                    <div class="p-5">
+                        <p class="font-semibold text-2xl line-clamp-3">{post.title}</p>
+                        <p class="mt-2 line-clamp-3">{post.content}</p>
+                        <p class="mt-2 line-clamp-3">{post.price}</p>
+                        <p class="mt-2 line-clamp-3">{post.status}</p>
+
+                        <button
+                            class="bg-[#bd2333] text-white absolute bottom-5 ml-[100px] align-middle w-32 h-[50px] rounded text-center py-3 ">
+                            Buy Product
+                        </button>
+
+                    </div>
+                </div>
+                <div class="h-[678px] w-[370px] bg-white rounded shadow-xl relative">
+                    <img src={post.imgUrl} alt="post image" class="w-full h-[50vh] rounded-t object-cover" />
+                    <div class="p-5">
+                        <p class="font-semibold text-2xl line-clamp-3">{post.title}</p>
+                        <p class="mt-2 line-clamp-3">{post.content}</p>
+                        <p class="mt-2 line-clamp-3">{post.price}</p>
+                        <p class="mt-2 line-clamp-3">{post.status}</p>
+
+                        <button
+                            class="bg-[#bd2333] text-white absolute bottom-5 ml-[100px] align-middle w-32 h-[50px] rounded text-center py-3 ">
+                            Buy Product
+                        </button>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- YOUR CART -->
+
+    <section id="your cart">
+        <div class="flex-col my-10">
+            <div class="flex flex-wrap">
+
+                <h1 class="text-4xl mx-[22vh] mb-5 font-bold">Your Cart</h1>
+                <button
+                    class="bg-slate-800 hover:bg-slate-900 text-white ml-[70vh] align-middle w-48 h-[50px] rounded text-center py-3 ">
+                    Go Back To Catalogue
+                </button>
+            </div>
+            <div class="mx-[22vh] flex flex-wrap gap-[10vh]">
+                <div class="h-[678px] w-[370px] bg-white rounded shadow-xl relative">
+                    <img src={post.imgUrl} alt="post image" class="w-full h-[50vh] rounded-t object-cover" />
+                    <div class="p-5">
+                        <p class="font-semibold text-2xl line-clamp-3">{post.title}</p>
+                        <p class="mt-2 line-clamp-3">{post.content}</p>
+                        <p class="mt-2 line-clamp-3">{post.price}</p>
+                        <p class="mt-2 line-clamp-3">{post.status}</p>
+
+                        <button
+                            class="bg-[#bd2333] text-white absolute bottom-5 ml-[100px] align-middle w-32 h-[50px] rounded text-center py-3 ">
+                            Delete Cart
+                        </button>
+
+                    </div>
+                </div>
+                <div class="h-[678px] w-[370px] bg-white rounded shadow-xl relative">
+                    <img src={post.imgUrl} alt="post image" class="w-full h-[50vh] rounded-t object-cover" />
+                    <div class="p-5">
+                        <p class="font-semibold text-2xl line-clamp-3">{post.title}</p>
+                        <p class="mt-2 line-clamp-3">{post.content}</p>
+                        <p class="mt-2 line-clamp-3">{post.price}</p>
+                        <p class="mt-2 line-clamp-3">{post.status}</p>
+
+                        <button
+                            class="bg-[#bd2333] text-white absolute bottom-5 ml-[100px] align-middle w-32 h-[50px] rounded text-center py-3 ">
+                            Delete Cart
+                        </button>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+
+
+</body>
+</html>
