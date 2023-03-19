@@ -1,6 +1,8 @@
 import axios from "axios";
 import { SERVER_URL } from "../../config/config";
 import { Link } from "react-router-dom";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 export default function RowProduct({ product, refetch }) {
   async function handleDelete() {
@@ -10,9 +12,9 @@ export default function RowProduct({ product, refetch }) {
         url: `${SERVER_URL}/products/${product._id}`,
       });
       refetch();
-      console.log("Delete Sucessful");
+      toast.success("Delete Sucessful");
     } catch (err) {
-      console.log(err.response.data.message);
+      toast.error(err.response.data?.message);
     }
   }
   return (

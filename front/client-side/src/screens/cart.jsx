@@ -1,6 +1,37 @@
+import axios from "axios";
+import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { SERVER_URL } from "../../config/config";
+import CartCard from "../components/cartCard";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 export default function Cart() {
   const navigate = useNavigate();
+  const [carts, setCarts] = useState([]);
+  const [fetchTrigger, setFetchTrigger] = useState(true);
+
+  function handleFetch() {
+    setFetchTrigger(!fetchTrigger);
+  }
+
+  useEffect(() => {
+    (async () => {
+      try {
+        const { data } = await axios({
+          method: "get",
+          url: `${SERVER_URL}/customer/cart`,
+          headers: {
+            access_token: localStorage.getItem("access_token"),
+          },
+        });
+        setCarts(data);
+      } catch (error) {
+        toast.error(err.response.data?.message);
+      }
+    })();
+  }, [fetchTrigger]);
+
   return (
     <section id="your cart">
       <div className="flex-col my-10">
@@ -22,24 +53,12 @@ export default function Cart() {
             Logout
           </button>
         </div>
-        <div className="mx-[22vh] flex flex-wrap gap-[10vh]">
-          <div className="h-[678px] w-[370px] bg-white rounded shadow-xl relative">
-            <img
-              src="{post.imgUrl}"
-              alt="post image"
-              className="w-full h-[50vh] rounded-t object-cover"
-            />
-            <div className="p-5">
-              <p className="font-semibold text-2xl line-clamp-3">post.title</p>
-              <p className="mt-2 line-clamp-3">post.content</p>
-              <p className="mt-2 line-clamp-3">post.price</p>
-              <p className="mt-2 line-clamp-3">post.status</p>
-
-              <button className="bg-[#bd2333] text-white absolute bottom-5 ml-[100px] align-middle w-32 h-[50px] rounded text-center py-3 ">
-                Delete Cart
-              </button>
-            </div>
-          </div>
+        <div className="mx-[22vh] flex flex-wrap gap-[6vh] mt-16">
+          {carts?.map((cart) => {
+            return (
+              <CartCard cart={cart} key={cart._id} handleFetch={handleFetch} />
+            );
+          })}
         </div>
       </div>
     </section>

@@ -1,7 +1,10 @@
 import axios from "axios";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { SERVER_URL } from "../../config/config";
+import ProductCard from "../components/productCard";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 export default function AllProducts() {
   const navigate = useNavigate();
@@ -17,10 +20,10 @@ export default function AllProducts() {
         });
         setProducts(data);
       } catch (err) {
-        console.log(err.response.data.message);
+        toast.error(err.response.data?.message);
       }
     })();
-  });
+  }, []);
 
   return (
     <section id="all products">
@@ -43,26 +46,10 @@ export default function AllProducts() {
             Logout
           </button>
         </div>
-        <div className="mx-[22vh] flex flex-wrap gap-[10vh]">
-          <div className="h-[678px] w-[370px] bg-white rounded shadow-xl relative">
-            <img
-              src="{post.imgUrl}"
-              alt="post image"
-              className="w-full h-[50vh] rounded-t object-cover"
-            />
-            <div className="p-5">
-              <p className="font-semibold text-2xl line-clamp-3">
-                "post.title"
-              </p>
-              <p className="mt-2 line-clamp-3">post.content</p>
-              <p className="mt-2 line-clamp-3">post.price</p>
-              <p className="mt-2 line-clamp-3">post.status</p>
-
-              <button className="bg-sky-700 hover:bg-sky-800 text-white absolute bottom-5 ml-[100px] align-middle w-32 h-[50px] rounded text-center py-3 ">
-                Buy Product
-              </button>
-            </div>
-          </div>
+        <div className="mx-[22vh] flex flex-wrap gap-[6vh] mt-16">
+          {products?.map((product) => {
+            return <ProductCard product={product} key={product._id} />;
+          })}
         </div>
       </div>
     </section>

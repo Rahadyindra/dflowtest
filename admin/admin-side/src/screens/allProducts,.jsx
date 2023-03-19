@@ -2,6 +2,8 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import RowProduct from "../components/rowProduct";
 import { SERVER_URL } from "../../config/config";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 export default function AllProducts() {
   const [products, setProducts] = useState([]);
@@ -20,7 +22,7 @@ export default function AllProducts() {
         });
         setProducts(data);
       } catch (err) {
-        console.log(err);
+        toast.error(err.response.data?.message);
       }
     })();
   }, [somethingDeleted]);
@@ -43,7 +45,13 @@ export default function AllProducts() {
         </thead>
         <tbody>
           {products?.map((product) => {
-            return <RowProduct product={product} key={product._id} refetch={refetch} />;
+            return (
+              <RowProduct
+                product={product}
+                key={product._id}
+                refetch={refetch}
+              />
+            );
           })}
         </tbody>
       </table>
