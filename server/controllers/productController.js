@@ -12,11 +12,11 @@ class ProductController {
 
   static async createProduct(req, res, next) {
     try {
-      const { name, price, imgUrl, description } = req.body;
-      if (!name || !price || !imgUrl || !description) {
+      const { name, price, imgUrl, description, status } = req.body;
+      if (!name || !price || !imgUrl || !description || !status) {
         throw { name: "invalid" };
       }
-      await Product.createProduct({ name, price, imgUrl, description });
+      await Product.createProduct({ name, price, imgUrl, description, status });
 
       res.status(201).json({
         message: "Successfully created a product",
@@ -42,6 +42,7 @@ class ProductController {
         message: `Successfully updated product ${_id}`,
       });
     } catch (err) {
+      console.log(err);
       next(err);
     }
   }

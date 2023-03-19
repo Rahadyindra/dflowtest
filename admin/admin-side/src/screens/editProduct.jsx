@@ -2,6 +2,8 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { SERVER_URL } from "../../config/config";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 export default function EditProduct() {
   const navigate = useNavigate();
@@ -23,7 +25,7 @@ export default function EditProduct() {
         });
         setProduct(data);
       } catch (err) {
-        console.log(err);
+        toast.error(err.response.data.message);
       }
     })();
   }, []);

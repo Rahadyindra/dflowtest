@@ -2,6 +2,8 @@ import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { SERVER_URL } from "../../config/config";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 export default function Login() {
   const navigate = useNavigate();
@@ -28,10 +30,10 @@ export default function Login() {
         data: loginData,
       });
       localStorage.setItem("access_token", data.access_token);
-      console.log("Login Successful!");
+      toast.success("Login Successful!");
       navigate("/");
     } catch (err) {
-      console.log(err.response.data.message);
+      toast.error(err.response.data?.message);
     }
   }
 

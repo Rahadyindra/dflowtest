@@ -2,6 +2,8 @@ import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { SERVER_URL } from "../../config/config";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 export default function Register() {
   const navigate = useNavigate();
@@ -28,10 +30,10 @@ export default function Register() {
         url: `${SERVER_URL}/customer/register`,
         data: registerData,
       });
-      console.log("Register Successful");
+      toast.success("Register Successful");
       navigate("/login");
     } catch (err) {
-      console.log(err.response.data.message);
+      toast.error(err.response.data?.message);
     }
   }
 
