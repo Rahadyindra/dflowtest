@@ -2,13 +2,14 @@ import axios from "axios";
 import { SERVER_URL } from "../../config/config";
 import { Link } from "react-router-dom";
 
-export default function RowProduct({ product }) {
+export default function RowProduct({ product, refetch }) {
   async function handleDelete() {
     try {
       await axios({
         method: "delete",
         url: `${SERVER_URL}/products/${product._id}`,
       });
+      refetch();
       console.log("Delete Sucessful");
     } catch (err) {
       console.log(err.response.data.message);

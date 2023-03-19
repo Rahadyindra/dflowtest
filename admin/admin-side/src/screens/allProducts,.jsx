@@ -5,6 +5,11 @@ import { SERVER_URL } from "../../config/config";
 
 export default function AllProducts() {
   const [products, setProducts] = useState([]);
+  const [somethingDeleted, setSomethingDeleted] = useState(true);
+
+  function refetch() {
+    setSomethingDeleted(!somethingDeleted);
+  }
 
   useEffect(() => {
     (async () => {
@@ -18,7 +23,7 @@ export default function AllProducts() {
         console.log(err);
       }
     })();
-  }, []);
+  }, [somethingDeleted]);
 
   return (
     <section id="all product" className="hidde">
@@ -38,7 +43,7 @@ export default function AllProducts() {
         </thead>
         <tbody>
           {products?.map((product) => {
-            return <RowProduct product={product} key={product._id} />;
+            return <RowProduct product={product} key={product._id} refetch={refetch} />;
           })}
         </tbody>
       </table>
